@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla de Caso de Uso</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; }
+        button { display: block; width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Plantilla de Caso de Uso</h1>
+        <form id="useCaseForm">
+            <div class="form-group">
+                <label for="title">Título del Caso de Uso</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="identifier">Identificador</label>
+                <input type="text" id="identifier" name="identifier" required>
+            </div>
+            <div class="form-group">
+                <label for="actors">Actor(es) Principal(es)</label>
+                <input type="text" id="actors" name="actors" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="preconditions">Precondiciones</label>
+                <textarea id="preconditions" name="preconditions" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="postconditions">Postcondiciones</label>
+                <textarea id="postconditions" name="postconditions" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="mainFlow">Flujo Principal</label>
+                <textarea id="mainFlow" name="mainFlow" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="alternativeFlows">Flujos Alternativos</label>
+                <textarea id="alternativeFlows" name="alternativeFlows" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="specificRequirements">Requisitos Específicos</label>
+                <textarea id="specificRequirements" name="specificRequirements" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="notes">Notas y Problemas Abiertos</label>
+                <textarea id="notes" name="notes" rows="2" required></textarea>
+            </div>
+            <button type="button" onclick="printToPDF()">Imprimir en PDF</button>
+        </form>
+    </div>
+    <script>
+        function printToPDF() {
+            const element = document.getElementById('useCaseForm');
+            const opt = {
+                margin:       1,
+                filename:     'Caso_de_Uso.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(element).set(opt).save();
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</body>
+</html>
